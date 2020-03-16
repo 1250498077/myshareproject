@@ -2,7 +2,6 @@ const Router = require('koa-router')
 const requireDirectory = require('require-directory')
 const config = require('../config/config')
 
-
 class InitManager {
     static initCore(app) {
         this.app = app;
@@ -25,7 +24,6 @@ class InitManager {
                 InitManager.app.use(obj.routes())
             }
         }
-
     }
 
     // 将配置文件全部注册到global全部变量中

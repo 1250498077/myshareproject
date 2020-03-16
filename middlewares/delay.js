@@ -7,9 +7,11 @@ const delay = (time) => {
     })
   };
 
-module.exports = async (ctx, next) => {
+const catchError = async (ctx, next) => {
   const body = ctx.request.body
   await delay(2000);
-  next()
+  await next();
 }
 
+
+module.exports = catchError;
