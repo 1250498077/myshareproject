@@ -10,7 +10,7 @@ const app = new Koa()
 
 app.use(catchError)
 app.use(parser())
-app.use(delay)
+// app.use(delay)
 
 
 InitManager.initCore(app)
