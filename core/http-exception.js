@@ -9,13 +9,24 @@ class HttpException extends Error {
 
 class ParameterException extends HttpException {
     constructor(msg, errorCode) {
+        super()
         this.errorCode = errorCode || 10000
         this.code = 400
         this.msg = msg || '参数错误'
     }
 }
 
+class TokenException extends HttpException {
+    constructor(msg, errorCode) {
+        super()
+        this.errorCode = errorCode || 10000
+        this.code = 11
+        this.msg = msg || ''
+    }
+}
+
 module.exports = {
     HttpException,
-    ParameterException
+    ParameterException,
+    TokenException
 }

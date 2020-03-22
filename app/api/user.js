@@ -75,8 +75,12 @@ router.post('/token', async (ctx, next) => {
     }
     ctx.body = {
         token: isToken,
-        id: decode
+        user: decode
     }
+});
+
+router.get('/test', async (ctx, next) => {
+    throw {'xxx': 'xxx'}
 });
 
 

@@ -39,9 +39,6 @@ class Product extends Model {
         let list = await Product.findAll({ offset: pageObj.offset, limit: pageObj.limit });
         return list;
     }
-
-
-
 }
 
 // 初始用户模型

@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken')
+const {TokenException} = require('../core/http-exception');
 /***
  * 
  */
@@ -52,10 +53,23 @@ const generateToken = function (uid) {
     return token
 }
 
-
-
+// 验证用户token
+const verifyToken = async function (ctx, next) {
+    const token = ctx.request.header.token;
+    if (!token) {
+        throw new TokenException('请在header传入token');
+    }
+    try {
+        var user = jwt.verify(token, global.config.security.secretKey);
+        ctx.user = user
+    }catch(e) {
+        throw new TokenException('toekn无效,请重新登录')
+    }
+    await next()
+}
 
 module.exports = {
     findMembers,
-    generateToken
+    generateToken,
+    verifyToken
 }
