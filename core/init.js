@@ -1,6 +1,7 @@
 const Router = require('koa-router')
 const requireDirectory = require('require-directory')
 const config = require('../config/config')
+const ChatSocket = require('../app/socket/chatSocket');
 
 class InitManager {
     static initCore(app) {
@@ -9,6 +10,8 @@ class InitManager {
         InitManager.initLoadRouters();
         // 初始化配置信息
         InitManager.loadConfig()
+        
+        new ChatSocket();
     }
 
     // 加载全部路由文件

@@ -79,8 +79,14 @@ router.post('/token', async (ctx, next) => {
     }
 });
 
-router.get('/test', async (ctx, next) => {
-    throw {'xxx': 'xxx'}
+// 获取所有用户
+router.post('/user', async (ctx, next) => {
+    // 接口权限验证
+    await User.isPermission(ctx, 'admin');
+    let users = await User.queryUsers();
+    ctx.body = {
+        list: users
+    }
 });
 
 
